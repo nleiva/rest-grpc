@@ -1,0 +1,162 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "This documentation describes a Person API.",
+    "title": "Go SwaggerUI example",
+    "contact": {
+      "name": "Nicolas Leiva",
+      "url": "https://nleiva.com",
+      "email": "nleiva@cisco.com"
+    },
+    "license": {
+      "name": "BSD-3-Clause",
+      "url": "https://opensource.org/licenses/BSD-3-Clause"
+    },
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/people": {
+      "get": {
+        "tags": [
+          "people"
+        ],
+        "summary": "Returns the list of current people.",
+        "operationId": "GetPeopleEndpoint",
+        "responses": {}
+      }
+    },
+    "/people/{id}": {
+      "get": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Returns the person for the provided id.",
+        "operationId": "GetPersonEndpoint",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the person.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/personResp"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Creates a new person.",
+        "operationId": "CreatePersonEndpoint",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the person.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Name and Email of the person.",
+            "name": "info",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/responses/personReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/peopleResp"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Creates a new person.",
+        "operationId": "CreatePersonEndpoint",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID of the person.",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/peopleResp"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Person": {
+      "description": "Person is a person :-)",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "id": {
+          "description": "in:body",
+          "type": "string",
+          "x-go-name": "ID"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        }
+      },
+      "x-go-package": "github.com/nleiva/clus-2019/rest-api"
+    }
+  },
+  "responses": {
+    "peopleResp": {
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Person"
+        }
+      }
+    },
+    "personReq": {
+      "headers": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "personResp": {
+      "description": "Person is a person :-)",
+      "headers": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
