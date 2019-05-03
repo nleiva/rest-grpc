@@ -1,6 +1,6 @@
-# clus-2019
+# REST - gRPC
 
-Cisco Live US 2019 session examples
+Examples of REST vs gRPC API workflows. 
 
 ## Go Swagger
 
